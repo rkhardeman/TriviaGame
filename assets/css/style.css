@@ -1,0 +1,42 @@
+body{
+	background-image: url(../images/starfleet.jpg);
+	background-size: 100%;
+}
+
+.main-container{
+	background:white;
+	opacity:.9;
+}
+
+.section-header{
+	margin-top:25px;
+	padding:20px;
+}
+
+p{
+	margin-left:20px;
+}
+
+#gameStart{
+	display:none;
+	background:white;
+	opacity:.9;
+}
+
+#divAnswers{
+	display:none;
+	background:white;
+	opacity:.9;
+}
+
+button.answers{
+	color: #FFD700;
+	font-weight: bold;
+	width: 35%;
+	margin: 10px 20px;
+	cursor: pointer;
+	background: black;
+	border-radius: 10px;
+	float: left;
+	padding: 7px;
+}

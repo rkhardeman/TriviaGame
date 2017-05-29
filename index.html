@@ -1,17 +1,67 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Starfleet Trivia</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
-<div id="question">
-	<p>Questions go here</p>
-
-</div>
-
 <body>
+	<div class ="container">
+		<div class ="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="main-container">
+					<h1 class ="section-header text-center"><u> Star Fleet Trivia! </u></h1>
+				</div>
+			</div>
 
+			<div class="col-md-8 col-md-offset-2">
+				<div class="main-container">
+					<h2 class="section-header text-center"> The Rules!</h2>
+					<p class="text-left">Each question is timed. If you do not select an answer and click 'submit' before time expires then the questions is counted as wrong. The number of correct and incorrect answers will be recorded below.</p>
+					<p id="correctAnswers"> Correct Answers: </p>
+					<p id="incorrectAnswers"> Inccorect Answers: </p>
+				</div>
+			</div>
+
+			<div class="col-md-8 col-md-offset-2">
+				<div class="main-container">
+					<p class="btnWrapper text-center"><button class="text-center btn btn-default" id="begin">Begin!</button>
+					</p>
+				</div>
+
+				<div id="gameStart">
+					<p class="timeRemaining">Time Remaining: <span id="time">30</span></p>
+
+					<p class="questions">
+					<button class="answers answer1"></button>
+					<button class="answers answer2"></button>
+					<button class="answers answer3"></button>
+					<button class="answers answer4"></button>
+					</p>
+				</div>
+
+				<div id="divAnswers">
+					<p class="timeRemaining">Time Remaining: <span id="elapsedTime"></span></p>
+					<p id="wrongMsg">Thats a wrong answer!</p>
+					<p id="correctMsg">Absolutely correct!</p>
+					<p id="outOfTime">Time Up!</p>
+					<p id="pCorrectAnswer">The correct answer is: <span></span></p>
+					<p id="pic"></p>
+				</div>
+
+				<div id="gameComplete">
+					<p>Game over! Here's your score:</p>
+					<p id="gameOverCorrect">Correct Answers: <span></span></p>
+					<p id="gameOverIncorrect">Incorrect Answers: <span></span></p>
+					<p id="unanswered">Unanswered Questions: <span></span></p>
+					<div id="restartPlaceholder"><button class="text-center btn btn-default">Restart?</button></div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
 </body>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 <script src="assets/javascript/app.js"></script>
