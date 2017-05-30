@@ -60,10 +60,10 @@ var triviaGame = {
     numberCorrect: 0,
     numberIncorrect: 0,
     numberUnAnswered: 0,
-    playMusic: new Audio("../sounds/star-trek.m4a"),
+    // playMusic: new Audio("../sounds/star-trek.m4a"),
 
     //function to begin game
-    beginGame: function(){triviaGame.playMusic.play(); 
+    beginGame: function(){
     //end game if questionCount is equal to questionsArry length
     if(triviaGame.questionCount == triviaGame.questionsArray.length){
       // call gameFinished funtion
