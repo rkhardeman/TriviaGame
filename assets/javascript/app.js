@@ -59,7 +59,6 @@ var triviaGame = {
     btnClicked: false,
     numberCorrect: 0,
     numberIncorrect: 0,
-    numberUnAnswered: 0,
     // playMusic: new Audio("../sounds/star-trek.m4a"),
 
     //function to begin game
@@ -81,7 +80,7 @@ var triviaGame = {
       }
 
       $('p.questions').html(triviaGame.questionsArray[triviaGame.questionCount].question);
-      $('button.answer1').html(triviaGame.questionsArray[triviaGame.questionCount].answer1);
+      $('button.answer1').html(triviaGame.questionsArray[triviaGame.questionCount].ans1);
       $('button.answer2').html(triviaGame.questionsArray[triviaGame.questionCount].answer2);
       $('button.answer3').html(triviaGame.questionsArray[triviaGame.questionCount].answer3);
       $('button.answer4').html(triviaGame.questionsArray[triviaGame.questionCount].answer4);
@@ -99,17 +98,14 @@ var triviaGame = {
     if(triviaGame.timer == 0){
 
       triviaGame.oufOfTime();
-      triviaGame.playMusic.pause();
       //if a button is clicked and the answer is correct excute answersCorrect().
    } else if(triviaGame.btnClicked == true && triviaGame.correctAnswers[triviaGame.questionCount] == triviaGame.userAnswers[triviaGame.questionCount]){
     
       triviaGame.answersCorrect();
-      triviaGame.playMusic.play();
       //if a button is clicked and the answer is incorrect excute answersWrong().
     } else if(triviaGame.btnClicked == true && triviaGame.correctAnswers[triviaGame.questionCount] != triviaGame.userAnswers[triviaGame.questionCount]){
 
       triviaGame.answersWrong();
-      triviaGame.playMusic.pause();
     }
 
   },// end of countDown
@@ -132,6 +128,7 @@ var triviaGame = {
     triviaGame.displayNextInt = setInterval(triviaGame.beginGame, 3000);
     triviaGame.numberCorrect++;
     triviaGame.questionCount++;
+
   },// end of correctAnswer
 
 // this function is called if the answer clicked is incorrect
@@ -146,6 +143,7 @@ answersWrong: function(){
     $('#pCorrectAnswer span').html(triviaGame.correctAnswers[triviaGame.questionCount]);
     $('#timeRemaining').css('display', 'block');
     $('#elapsedTime').html(triviaGame.timer);
+    $('#incorrectAnswers').html(triviaGame.incorrectAnswers);
 
     clearInterval(triviaGame.beginInt);
     triviaGame.btnClicked = false;
@@ -154,7 +152,7 @@ answersWrong: function(){
     triviaGame.questionCount++;
   },// end of answerWrong
 
-// this functon is called when plaayer runs out of time
+// this functon is called when player runs out of time
 oufOfTime: function(){
 
     triviaGame.userAnswers.push(""); 
@@ -166,11 +164,12 @@ oufOfTime: function(){
     $('#wrongMsg').hide();    
     $('#timeRemaining').css('display', 'block');
     $('#elapsedTime').html(triviaGame.timer); 
-
+    $('#incorrectAnswers').html(triviaGame.incorrectAnswers);
     clearInterval(triviaGame.beginInt);
-    triviaGame.numberUnAnswered++;
+    triviaGame.numberIncorrect++;
     triviaGame.displayNextInt = setInterval(triviaGame.beginGame, 5000);
-    triviaGame.questionCount++; 
+    triviaGame.questionCount++;
+
 
   },// end of outOfTime
 
@@ -189,7 +188,6 @@ restart: function(){
     $('#elapsedTime').empty();
     triviaGame.numberCorrect = 0;
     triviaGame.numberIncorrect = 0;
-    triviaGame.numberUnAnswered = 0;
   },//end of restart
 
 // reset after game ends 
@@ -203,7 +201,6 @@ gameFinished: function(){
 
     $('#gameOverCorrect span').html(triviaGame.numberCorrect);
     $('#gameOverIncorrect span').html(triviaGame.numberIncorrect);
-    $('#unanswered span').html(triviaGame.numberUnAnswered);
     triviaGame.timer = 30;
   }// end of gameFinished
 
@@ -212,13 +209,28 @@ gameFinished: function(){
 
   }//end of var triviaGame
 
-
+// start the game on click
   $('#begin').on('click', function(){
 
     $("#gameStart").css('display', 'block');
     $("#btnWrapper").css('display', 'none');
     $(".questions").html(triviaGame.beginGame);
 
+  });
+
+
+  $('.answers').on('click', function(){
+
+    triviaGame.userAnswers.push($(this).text());
+    triviaGame.btnClicked = true;
+
+  });
+
+// On click call the reset function to restart the game
+  $('#restartBtn').on('click', function(){
+
+    triviaGame.restart();
+    
   });
 
 
