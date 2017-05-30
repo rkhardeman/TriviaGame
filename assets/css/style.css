@@ -29,6 +29,12 @@ p{
 	opacity:.9;
 }
 
+#gameComplete{
+	display:none;
+	background:white;
+	opacity:.9;
+}
+
 button.answers{
 	color: #FFD700;
 	font-weight: bold;
